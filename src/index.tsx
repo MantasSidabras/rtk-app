@@ -1,16 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { commonStore } from "./common-store/common-store";
+import { appStoreContext } from "./store/appStoreHooks";
+import { commonContext } from "./common-store/commonStoreHooks";
+import { appStore } from "./store/app-store";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={commonStore} context={commonContext}>
+    <Provider store={appStore} context={appStoreContext}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
