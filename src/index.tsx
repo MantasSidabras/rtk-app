@@ -8,13 +8,14 @@ import { commonStore } from "./common-store/common-store";
 import { appStoreContext } from "./store/appStoreHooks";
 import { commonContext } from "./common-store/commonStoreHooks";
 import { appStore } from "./store/app-store";
+import App2 from "./App2";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <Provider store={commonStore} context={commonContext}>
-    <Provider store={appStore} context={appStoreContext}>
+  <Provider store={appStore} context={appStoreContext}>
+    <Provider store={commonStore} context={commonContext}>
       <React.StrictMode>
         <App />
       </React.StrictMode>

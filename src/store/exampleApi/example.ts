@@ -5,7 +5,7 @@ import {
   buildCreateApi,
   createApi,
 } from "@reduxjs/toolkit/query/react";
-import { appStoreContext, useAppDispatch } from "../appStoreHooks";
+import { appStoreContext, useAppDispatch, useAppSelector } from "../appStoreHooks";
 import { createDispatchHook, createSelectorHook } from "react-redux";
 
 type Response = {
@@ -17,7 +17,7 @@ const customCreateApi = buildCreateApi(
   coreModule(),
   reactHooksModule({
     useDispatch: useAppDispatch,
-    // useSelector: createSelectorHook(appStoreContext),
+    useSelector: createSelectorHook(appStoreContext),
   })
 );
 

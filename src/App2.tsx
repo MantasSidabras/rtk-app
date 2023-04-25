@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import {
-  useGetPokemonByNameQuery,
+  exampleApi,
 } from "./store/exampleApi/example";
+import { useAppDispatch, useAppSelector } from "./store/appStoreHooks";
 
 function App() {
+  const dispatch = useAppDispatch();
+
   const {
-    isLoading,
-    error,
     data: pokemon,
-  } = useGetPokemonByNameQuery("bulbasaur");
+    error,
+    isLoading,
+  } = useAppSelector(exampleApi.endpoints.getPokemonByName.select("bulbasaur"));
+
+  useEffect(() => {
+    dispatch(
+      exampleApi.endpoints.getPokemonByName.initiate("bulbasaur") as any
+    );
+  }, []);
 
   if (isLoading || !pokemon) {
     return <h2>Loading...</h2>;
